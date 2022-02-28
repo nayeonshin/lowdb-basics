@@ -12,6 +12,8 @@
     <script>
       const adapter = new LocalStorage("db");
       const db = low(adapter);
+
+      db.data = db.data || { topics: [], authors: [] };
     </script>
   </head>
   <body></body>
