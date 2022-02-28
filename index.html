@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!DOCTYPE html>
+  </head>
+  <body>
     <script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
     <script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
     <script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
@@ -13,8 +14,37 @@
       const adapter = new LocalStorage("db");
       const db = low(adapter);
 
-      db.data = db.data || { topics: [], authors: [] };
+      db.defaults({
+        topics: [],
+        authors: [],
+      }).write();
+
+      db.get("authors")
+        .push({
+          id: 1,
+          name: "Nayeon",
+          profile: "Aspiring back-end developer",
+        })
+        .write();
+
+      db.get("topics")
+        .push({
+          id: 1,
+          title: "lowdb",
+          description: "lowdb is a simple-to-use local JSON database.",
+          author: 1,
+        })
+        .write();
+
+      db.get("topics")
+        .push({
+          id: 2,
+          title: "MySQL",
+          description:
+            "MySQL is an open-source relational database management system.",
+          author: 1,
+        })
+        .write();
     </script>
-  </head>
-  <body></body>
+  </body>
 </html>

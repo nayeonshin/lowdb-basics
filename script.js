@@ -14,7 +14,7 @@ await db.read();
 
 // If file.json doesn't exist, db.data will be null
 // Set default data
-db.data = db.data || { topics: [], authors: [] }; // Node < v15.x
+db.data = db.data || { authors: [], topics: [] }; // Node < v15.x
 // db.data ||= { posts: [] }; // Node >= 15.x
 
 // Create and query items using plain JS
@@ -24,6 +24,30 @@ db.data = db.data || { topics: [], authors: [] }; // Node < v15.x
 // Alternatively, you can also use this syntax if you prefer
 // const { posts } = db.data;
 // posts.push("hello world");
+
+const { authors } = db.data;
+
+authors.push({
+  id: 1,
+  name: "Nayeon",
+  title: "Aspiring back-end developer",
+});
+
+const { topics } = db.data;
+
+topics.push({
+  id: 1,
+  title: "lowdb",
+  description: "lowdb is a simple-to-use local JSON database.",
+  author: 1,
+});
+
+topics.push({
+  id: 2,
+  title: "MySQL",
+  description: "MySQL is an open-source relational database management system.",
+  author: 1,
+});
 
 // Finally write db.data content to file
 await db.write();
