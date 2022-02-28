@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "name": "lowdb-basics",
+  "version": "1.0.0",
+  "description": "",
+  "exports": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nayeon Shin",
+  "license": "MIT"
+}
