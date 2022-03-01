@@ -19,32 +19,38 @@
         authors: [],
       }).write();
 
-      db.get("authors")
-        .push({
-          id: 1,
-          name: "Nayeon",
-          profile: "Aspiring back-end developer",
-        })
-        .write();
+      // db.get("authors")
+      //   .push({
+      //     id: 1,
+      //     name: "Nayeon",
+      //     profile: "Aspiring back-end developer",
+      //   })
+      //   .write();
 
-      db.get("topics")
-        .push({
-          id: 1,
-          title: "lowdb",
-          description: "lowdb is a simple-to-use local JSON database.",
-          author: 1,
-        })
-        .write();
+      // db.get("topics")
+      //   .push({
+      //     id: 1,
+      //     title: "lowdb",
+      //     description: "lowdb is a simple-to-use local JSON database.",
+      //     author: 1,
+      //   })
+      //   .write();
 
-      db.get("topics")
-        .push({
-          id: 2,
-          title: "MySQL",
-          description:
-            "MySQL is an open-source relational database management system.",
-          author: 1,
-        })
-        .write();
+      // db.get("topics")
+      //   .push({
+      //     id: 2,
+      //     title: "MySQL",
+      //     description:
+      //       "MySQL is an open-source relational database management system.",
+      //     author: 1,
+      //   })
+      //   .write();
+
+      const lowdb = db
+        .get("topics")
+        .find({ title: "lowdb", author: 1 })
+        .value();
+      console.log(lowdb);
     </script>
   </body>
 </html>
