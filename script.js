@@ -15,15 +15,6 @@ await db.read();
 // If file.json doesn't exist, db.data will be null
 // Set default data
 db.data = db.data || { authors: [], topics: [] }; // Node < v15.x
-// db.data ||= { posts: [] }; // Node >= 15.x
-
-// Create and query items using plain JS
-// db.data.posts.push("hello world");
-// const firstPost = db.data.posts[0];
-
-// Alternatively, you can also use this syntax if you prefer
-// const { posts } = db.data;
-// posts.push("hello world");
 
 const { authors } = db.data;
 
