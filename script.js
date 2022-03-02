@@ -12,7 +12,7 @@ const adapter = new JSONFile("db.json");
 const db = new LowWithLodash(adapter);
 await db.read();
 
-/* ------------------------------ Create ------------------------------ */
+/* ----------------------------- Create ----------------------------- */
 // If file.json doesn't exist, db.data will be null
 // Set default data
 db.data = db.data || { authors: [], topics: [] }; // Node < v15.x
@@ -52,7 +52,7 @@ const lowdb = db.chain
   .value();
 console.log(lowdb);
 
-/* ------------------------------ Update ------------------------------ */
+/* ----------------------------- Update ----------------------------- */
 db.chain
   .get("topics")
   .find({ id: 2 })
@@ -64,11 +64,11 @@ db.chain
   .value();
 await db.write();
 
-/* ------------------------------ Delete ------------------------------ */
+/* ----------------------------- Delete ----------------------------- */
 db.chain.get("topics").remove({ id: 2 }).value();
 await db.write();
 
-/* ------------------------------ Random ids ------------------------------ */
+/* --------------------------- Random ids --------------------------- */
 const nanoId = nanoid();
 authors.push({
   id: nanoId,
