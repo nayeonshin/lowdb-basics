@@ -10,54 +10,82 @@
     <script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
   </head>
   <body>
-    <script>
+    <script type="module">
+      import { nanoid } from "https://cdn.jsdelivr.net/npm/nanoid/nanoid.js";
+
       const adapter = new LocalStorage("db");
       const db = low(adapter);
 
+      /* ------------------------------ Create ------------------------------ */
       db.defaults({
         topics: [],
         authors: [],
       }).write();
 
-      // db.get("authors")
-      //   .push({
-      //     id: 1,
-      //     name: "Nayeon",
-      //     profile: "Aspiring back-end developer",
-      //   })
-      //   .write();
+      db.get("authors")
+        .push({
+          id: 1,
+          name: "Nayeon",
+          profile: "Aspiring back-end developer",
+        })
+        .write();
 
-      // db.get("topics")
-      //   .push({
-      //     id: 1,
-      //     title: "lowdb",
-      //     description: "lowdb is a simple-to-use local JSON database.",
-      //     author: 1,
-      //   })
-      //   .write();
+      db.get("topics")
+        .push({
+          id: 1,
+          title: "lowdb",
+          description: "lowdb is a simple-to-use local JSON database.",
+          author: 1,
+        })
+        .write();
 
-      // db.get("topics")
-      //   .push({
-      //     id: 2,
-      //     title: "MySQL",
-      //     description:
-      //       "MySQL is an open-source relational database management system.",
-      //     author: 1,
-      //   })
-      //   .write();
+      db.get("topics")
+        .push({
+          id: 2,
+          title: "MySQL",
+          description:
+            "MySQL is an open-source relational database management system.",
+          author: 1,
+        })
+        .write();
 
+      /* ------------------------------ Read ------------------------------ */
       const lowdb = db
         .get("topics")
         .find({ title: "lowdb", author: 1 })
         .value();
       console.log(lowdb);
 
+      /* ------------------------------ Update ------------------------------ */
       db.get("topics")
         .find({ id: 2 })
         .assign({
           title: "MySQL & MariaDB",
           description:
             "MySQL is an open-source relational database management system. MariaDB is a community-developed, commercially supported fork of the MySQL relational database management system.",
+        })
+        .write();
+
+      /* ------------------------------ Delete ------------------------------ */
+      db.get("topics").remove({ id: 2 }).write();
+
+      /* ------------------------------ Random ids ------------------------------ */
+      const nanoId = nanoid();
+      db.get("authors")
+        .push({
+          id: nanoId,
+          name: "Nayoni",
+          title: "Nayeon's clone",
+        })
+        .write();
+
+      db.get("topics")
+        .push({
+          id: nanoid(),
+          title: "PostgreSQL",
+          description:
+            "PostgreSQL is a free and open-source relational database management system emphasizing extensibility and SQL compliance.",
+          author: nanoId,
         })
         .write();
     </script>
