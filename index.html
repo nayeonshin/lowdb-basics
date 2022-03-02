@@ -51,6 +51,15 @@
         .find({ title: "lowdb", author: 1 })
         .value();
       console.log(lowdb);
+
+      db.get("topics")
+        .find({ id: 2 })
+        .assign({
+          title: "MySQL & MariaDB",
+          description:
+            "MySQL is an open-source relational database management system. MariaDB is a community-developed, commercially supported fork of the MySQL relational database management system.",
+        })
+        .write();
     </script>
   </body>
 </html>
