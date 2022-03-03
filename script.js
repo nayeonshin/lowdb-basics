@@ -12,13 +12,14 @@ const adapter = new JSONFile("db.json");
 const db = new LowWithLodash(adapter);
 await db.read();
 
-/* ----------------------------- Create ----------------------------- */
 // If file.json doesn't exist, db.data will be null
 // Set default data
 db.data = db.data || { authors: [], topics: [] }; // Node < v15.x
 
 const { authors } = db.data;
 const { topics } = db.data;
+
+/* ----------------------------- Create ----------------------------- */
 
 authors.push({
   id: 1,

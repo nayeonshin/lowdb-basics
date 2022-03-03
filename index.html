@@ -16,11 +16,12 @@
       const adapter = new LocalStorage("db");
       const db = low(adapter);
 
-      /* ----------------------------- Create ----------------------------- */
       db.defaults({
         topics: [],
         authors: [],
       }).write();
+
+      /* ----------------------------- Create ----------------------------- */
 
       db.get("authors")
         .push({
