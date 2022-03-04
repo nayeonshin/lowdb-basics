@@ -14,29 +14,27 @@ await db.read();
 
 // If file.json doesn't exist, db.data will be null
 // Set default data
-db.data = db.data || { authors: [], topics: [] }; // Node < v15.x
+db.data = db.data || { author: [], topic: [] }; // Node < v15.x
 
-const { authors } = db.data;
-const { topics } = db.data;
+const { author } = db.data;
+const { topic } = db.data;
 
 /* ----------------------------- Create ----------------------------- */
 
-authors.push({
+author.push({
   id: 1,
   name: "Nayeon",
   title: "Aspiring back-end developer",
 });
 
-const { topics } = db.data;
-
-topics.push({
+topic.push({
   id: 1,
   title: "lowdb",
   description: "lowdb is a simple-to-use local JSON database.",
   author: 1,
 });
 
-topics.push({
+topic.push({
   id: 2,
   title: "MySQL",
   description: "MySQL is an open-source relational database management system.",
@@ -47,15 +45,12 @@ topics.push({
 await db.write();
 
 /* ------------------------------ Read ------------------------------ */
-const lowdb = db.chain
-  .get("topics")
-  .find({ title: "lowdb", author: 1 })
-  .value();
+const lowdb = db.chain.get("topic").find({ title: "lowdb", author: 1 }).value();
 console.log(lowdb);
 
 /* ----------------------------- Update ----------------------------- */
 db.chain
-  .get("topics")
+  .get("topic")
   .find({ id: 2 })
   .assign({
     title: "MySQL & MariaDB",
@@ -66,18 +61,18 @@ db.chain
 await db.write();
 
 /* ----------------------------- Delete ----------------------------- */
-db.chain.get("topics").remove({ id: 2 }).value();
+db.chain.get("topic").remove({ id: 2 }).value();
 await db.write();
 
 /* --------------------------- Random ids --------------------------- */
 const nanoId = nanoid();
-authors.push({
+author.push({
   id: nanoId,
   name: "Nayoni",
   title: "Nayeon's clone",
 });
 
-topics.push({
+topic.push({
   id: nanoid(),
   title: "PostgreSQL",
   description:
