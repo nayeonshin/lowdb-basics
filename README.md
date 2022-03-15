@@ -1,3 +1,3 @@
 # lowdb Basics
 
-Learning lowdb in Vanilla JS and NodeJS
+Learning the basics of lowdb in Vanilla JS and NodeJS
